@@ -1,0 +1,44 @@
+map gi :vsc Edit.GoToImplementation<CR>
+map gr :vsc Edit.FindAllReferences<CR>
+map gp :vsc Edit.PeekDefinition<CR>
+map gb :vsc Edit.GotoBrace<CR>
+
+let mapleader=","
+nnoremap <leader>m :vsc Edit.NextMethod<CR>
+nnoremap <leader>M :vsc Edit.PreviousMethod<CR>
+nnoremap R :vsc Refactor.Rename<CR>
+nnoremap <leader>e :vsc View.NextError<CR>
+nnoremap <leader>E :vsc View.PreviousError<CR>
+nnoremap <leader>b :vsc Debug.ToggleBreakpoint<CR>
+nnoremap <leader>r :vsc TestExplorer.RunAllTestsInContext<CR>
+nnoremap <leader>R :vsc TestExplorer.DebugAllTestsInContext<CR>
+nnoremap <leader>c :vsc Edit.CollapsetoDefinitions<CR>
+nnoremap <leader>f :vsc Edit.FormatDocument<CR>
+nnoremap <leader>s :vsc Edit.FormatSelection<CR>
+nnoremap <leader>x :vsc View.SolutionExplorer<CR>
+nnoremap <leader>p :vsc View.TfsPendingChanges<CR>
+nnoremap <leader>cs :vsc Build.CleanSolution<CR>
+nnoremap <leader>rs :vsc Build.RebuildSolution<CR>
+nnoremap <leader>ap :vsc Debug.AttachtoProcess<CR>
+nnoremap <leader>pi :vsc Edit.ParameterInfo<CR>
+nnoremap <leader>/ :vsc Edit.CommentSelection<CR>
+nnoremap <leader>\ :vsc Edit.UncommentSelection<CR>
+nnoremap <leader>ex :vsc Edit.ExpandCurrentRegion<CR>
+nnoremap <leader>ca :vsc Edit.CollapseAllOutlining<CR>
+nnoremap <leader>ct :vsc Edit.CollapseTag<CR>
+nnoremap <leader>ta :vsc Edit.ToggleAllOutlining<CR>
+nnoremap <leader>t :vsc Edit.ToggleOutliningExpansion<CR>
+nnoremap <leader>ac :vsc Project.AddClass<CR>
+nnoremap <leader>v :vsc View.QuickActions<CR>
+nnoremap <leader>zi :vsc View.ZoomIn<CR>
+nnoremap <leader>zo :vsc View.ZoomOut<CR>
+nnoremap <leader>sv :vsc Window.NewVerticalTabGroup<CR>
+nnoremap <leader>ns :vsc Window.NextSplitPane<CR>
+nnoremap <leader>np :vsc Window.NextPane<CR>
+nnoremap <leader>pp :vsc Window.PreviousPane<CR>
+nnoremap <leader>ps :vsc Window.PreviousSplitPane<CR>
+nnoremap <leader>cd :vsc Window.CloseAllDocuments<CR>
+nnoremap <leader>nt :vsc Window.NextTab<CR>
+nnoremap <leader>pt :vsc Window.PreviousTab<CR>
+
+:cd D:\Project\GoSell\Dev\CRM.Sales.Mobile\
