@@ -36,7 +36,7 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 set hidden
 let g:onedark_termcolors=256
 colorscheme onedark
-
+let g:camelcasemotion_key = '<leader>'
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
