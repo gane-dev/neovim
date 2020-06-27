@@ -1,6 +1,7 @@
 call plug#begin('~/AppData/Local/nvim/plugged')
 "below are some vim plugin for demonstration purpose
- Plug 'joshdick/onedark.vim'
+ " Plug 'joshdick/onedark.vim'
+ Plug 'tomasiser/vim-code-dark'
  Plug 'iCyMind/NeoSolarized'
 
  Plug 'vim-airline/vim-airline'
@@ -10,6 +11,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
+Plug 'yegappan/taglist'
+Plug 'frazrepo/vim-rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   Plug 'neoclide/coc-prettier'
@@ -20,6 +23,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'easymotion/vim-easymotion'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'pseewald/anyfold'
  call plug#end()
   
   let g:coc_global_extensions = [
@@ -34,15 +38,16 @@ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " TextEdit might fail if hidden is not set.
 set hidden
- " let g:onedark_termcolors=256
-   " colorscheme onedark
-   set t_Co=256
-   set t_ut=
-   colorscheme codedark
-   let g:airline_theme = 'codedark'let g:camelcasemotion_key = '<leader>'
+" let g:onedark_termcolors=256
+" colorscheme onedark
+set t_Co=256
+set t_ut=
+colorscheme codedark
+let g:airline_theme = 'codedark'
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
+let g:camelcasemotion_key = '<leader>'
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -78,7 +83,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -103,13 +108,13 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-"function! s:show_documentation()
-"  if (index(['vim','help'], &filetype) >= 0)
-"    execute 'h '.expand('<cword>')
-"  else
-"    call CocAction('doHover')
-"  endif
-"endfunction
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 "autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -138,6 +143,10 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+nnoremap<leader>tn :tabn<cr>
+nnoremap<leader>tl :tabl<cr>
+nnoremap<leader>tp :tabp<cr>
+nnoremap<leader>tr :tabr<cr>
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -198,8 +207,8 @@ function! s:show_hover_doc()
   call timer_start(500, 'ShowDocIfNoDiagnostic')
 endfunction
 
-"autocmd CursorHoldI * :call <SID>show_hover_doc()
-"autocmd CursorHold * :call <SID>show_hover_doc()
+" autocmd CursorHoldI * :call <SID>show_hover_doc()
+" autocmd CursorHold * :call <SID>show_hover_doc()
 
 " turn relative line numbers on
 :set relativenumber
@@ -219,3 +228,38 @@ endfunction
  " Use <C-j> for both expand and jump (make expand higher priority.)
  imap <C-j> <Plug>(coc-snippets-expand-jump)
  
+" You can set up fzf window using a Vim command (Neovim or latest Vim 8
+" required)
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-o': 'vsplit' }"
+" " Customize fzf colors to match your color scheme
+" " - fzf#wrap translates this to a set of `--color` options
+ let g:fzf_colors = { 'fg':      ['fg', 'Normal'], 'bg':      ['bg', 'Normal'], 'hl':      ['fg', 'Comment'], 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'], 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],'hl+':     ['fg', 'Statement'], 'info':    ['fg', 'PreProc'], 'border':  ['fg', 'Ignore'], 'prompt':  ['fg', 'Conditional'], 'pointer': ['fg', 'Exception'], 'marker':  ['fg', 'Keyword'], 'spinner': ['fg', 'Label'], 'header':  ['fg', 'Comment'] }
+"
+"                         " Enable per-command history
+"                         " - History files will be stored in the specified
+"                         directory
+"                         " - When set, CTRL-N and CTRL-P will be bound to
+"                         'next-history' and
+"                         "   'previous-history' instead of 'down' and 'up'.
+"                         let g:fzf_history_dir = '~/.local/share/fzf-history'
+if has('nvim') && !exists('g:fzf_layout')
+	  autocmd! FileType fzf
+	    autocmd  FileType fzf set laststatus=0 noshowmode noruler
+	        \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+    endif
+nnoremap <C-g> :Rg<Cr>
+nnoremap <C-f> :Files<Cr>
+
+nnoremap<leader>s :w<cr>
+nnoremap<leader>x :wq<cr>
+nnoremap<leader>q :q!<cr>
+nnoremap<leader>xa :wqa<cr>
+filetype plugin indent on " required
+ syntax on                 " required
+
+  autocmd Filetype * AnyFoldActivate               " activate for all filetypes
+  set foldlevel=0  " close all folds
+  let g:rainbow_active = 1
