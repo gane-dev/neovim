@@ -34,9 +34,12 @@ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " TextEdit might fail if hidden is not set.
 set hidden
-let g:onedark_termcolors=256
-colorscheme onedark
-let g:camelcasemotion_key = '<leader>'
+ " let g:onedark_termcolors=256
+   " colorscheme onedark
+   set t_Co=256
+   set t_ut=
+   colorscheme codedark
+   let g:airline_theme = 'codedark'let g:camelcasemotion_key = '<leader>'
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
