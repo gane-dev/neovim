@@ -13,6 +13,10 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'yegappan/taglist'
 Plug 'frazrepo/vim-rainbow'
+Plug 'scrooloose/nerdtree'
+Plug 'SirVer/ultisnips'
+Plug 'jiangmiao/auto-pairs'
+Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   Plug 'neoclide/coc-prettier'
@@ -44,6 +48,13 @@ set t_Co=256
 set t_ut=
 colorscheme codedark
 let g:airline_theme = 'codedark'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[dos]'
+let g:airline_section_x=''
+let g:airline_section_z=''
+let g:airline_section_y=''
+let g:airline_section_b=''
+let g:airline_skip_empty_sections = 1
+  let g:airline#extensions#fugitiveline#enabled = 1
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -212,7 +223,7 @@ endfunction
 
 " turn relative line numbers on
 :set relativenumber
-:set rnu
+:set nu rnu
 " Use <C-l> for trigger snippet expand.
  imap <C-l> <Plug>(coc-snippets-expand)
 
