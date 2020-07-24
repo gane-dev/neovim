@@ -274,3 +274,7 @@ filetype plugin indent on " required
   autocmd Filetype * AnyFoldActivate               " activate for all filetypes
   set foldlevel=0  " close all folds
   let g:rainbow_active = 1
+  set ignorecase 
+  set smartcase
+  let g:sneak#label = 1
+  nnoremap <leader>n :NERDTreeToggle<CR>
